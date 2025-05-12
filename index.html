@@ -41,7 +41,7 @@
 				createjs.Ticker.framerate = lib.properties.fps;
 				createjs.Ticker.addEventListener("tick", stage);
 			}	    
-			AdobeAn.makeResponsive(false,'both',false,1,[canvas,anim_container,dom_overlay_container]);	
+			AdobeAn.makeResponsive(false,'both',true,1,[canvas,anim_container,dom_overlay_container]);	
 			AdobeAn.compositionLoaded(lib.properties.id);
 			fnStartAnimation();
 		}

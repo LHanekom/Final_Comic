@@ -11,16 +11,14 @@ div {
   height: 100vh !important;
 }
 
-img, video {
+
+
+img, video, #animation_container {
     margin: 0 auto;
     width: 100vw;
     display: block;
 }
 
-#animation_container, canvas {
-  margin: 0 auto;
-  display: block;
-}
 
 body {
   margin: 0;
