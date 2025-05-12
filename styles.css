@@ -11,12 +11,17 @@ div {
   height: 100vh !important;
 }
 
-
-
 img, video, #animation_container {
     margin: 0 auto;
     width: 100vw;
     display: block;
+}
+
+#canvas {
+    margin: 0 auto;
+    width: 100vw;
+    display: block;
+    height: 260.42vh;
 }
 
 
