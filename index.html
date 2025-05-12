@@ -1,75 +1,90 @@
 <!DOCTYPE html>
-<!--
-	NOTES:
-	1. All tokens are represented by '$' sign in the template.
-	2. You can write your code only wherever mentioned.
-	3. All occurrences of existing tokens will be replaced by their appropriate values.
-	4. Blank lines will be removed automatically.
-	5. Remove unnecessary comments before creating your template.
--->
 <html>
-<head>
-<meta charset="UTF-8">
-<meta name="authoring-tool" content="Adobe_Animate_CC">
-<title>Lightbringer</title>
-<link rel="stylesheet" href="styles.css">
-<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-<script src="Infographic.js"></script>
-<script>
-var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
-function init() {
-	canvas = document.getElementById("canvas");
-	anim_container = document.getElementById("animation_container");
-	dom_overlay_container = document.getElementById("dom_overlay_container");
-	var comp=AdobeAn.getComposition("B92E27B477D77544AE8C619020814858");
-	var lib=comp.getLibrary();
-	var loader = new createjs.LoadQueue(false);
-	loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
-	loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
-	var lib=comp.getLibrary();
-	loader.loadManifest(lib.properties.manifest);
-}
-function handleFileLoad(evt, comp) {
-	var images=comp.getImages();	
-	if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
-}
-function handleComplete(evt,comp) {
-	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
-	var lib=comp.getLibrary();
-	var ss=comp.getSpriteSheet();
-	var queue = evt.target;
-	var ssMetadata = lib.ssMetadata;
-	for(i=0; i<ssMetadata.length; i++) {
-		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
-	}
-	exportRoot = new lib.Infographic();
-	stage = new lib.Stage(canvas);
-	stage.enableMouseOver();	
-	//Registers the "tick" event listener.
-	fnStartAnimation = function() {
-		stage.addChild(exportRoot);
-		createjs.Ticker.framerate = lib.properties.fps;
-		createjs.Ticker.addEventListener("tick", stage);
-	}	    
-	//Code to support hidpi screens and responsive scaling.
-	AdobeAn.makeResponsive(false,'both',false,1,[canvas,anim_container,dom_overlay_container]);	
-	AdobeAn.compositionLoaded(lib.properties.id);
-	fnStartAnimation();
-}
-</script>
-<!-- write your code here -->
-</head>
-<body onload="init();">
-	<video autoplay muted loop playsinline id="launch_page">
-		<source src="images/launch.mp4" type="video/mp4">
-		Your browser doesn't support HTML5 video.
-	</video>
-	<img src="images/stars.png" alt="stars">
-    <img src="images/introduction.png" alt="introduction">
-    <img src="images/stars.png" alt="stars">
-	<div id="animation_container">
-		<canvas id="canvas"></canvas>
-		<div id="dom_overlay_container"></div>
-	</div>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="authoring-tool" content="Adobe_Animate_CC">
+		<title>Lightbringer</title>
+		<link rel="stylesheet" href="styles.css">
+		<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+		<script src="Infographic.js"></script>
+		<script>
+		var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+		function init() {
+			canvas = document.getElementById("canvas");
+			anim_container = document.getElementById("animation_container");
+			dom_overlay_container = document.getElementById("dom_overlay_container");
+			var comp=AdobeAn.getComposition("B92E27B477D77544AE8C619020814858");
+			var lib=comp.getLibrary();
+			var loader = new createjs.LoadQueue(false);
+			loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+			loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+			var lib=comp.getLibrary();
+			loader.loadManifest(lib.properties.manifest);
+		}
+		function handleFileLoad(evt, comp) {
+			var images=comp.getImages();	
+			if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
+		}
+		function handleComplete(evt,comp) {
+			var lib=comp.getLibrary();
+			var ss=comp.getSpriteSheet();
+			var queue = evt.target;
+			var ssMetadata = lib.ssMetadata;
+			for(i=0; i<ssMetadata.length; i++) {
+				ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+			}
+			exportRoot = new lib.Infographic();
+			stage = new lib.Stage(canvas);
+			stage.enableMouseOver();	
+			fnStartAnimation = function() {
+				stage.addChild(exportRoot);
+				createjs.Ticker.framerate = lib.properties.fps;
+				createjs.Ticker.addEventListener("tick", stage);
+			}	    
+			AdobeAn.makeResponsive(false,'both',false,1,[canvas,anim_container,dom_overlay_container]);	
+			AdobeAn.compositionLoaded(lib.properties.id);
+			fnStartAnimation();
+		}
+		</script>
+	</head>
+	<body onload="init();">
+		<video autoplay muted loop playsinline id="launch_page">
+			<source src="images/launch.mp4" type="video/mp4">
+			Your browser doesn't support HTML5 video.
+		</video>
+		<img src="images/stars.png" alt="stars">
+		<img src="images/introduction.png" alt="introduction">
+		<img src="images/stars.png" alt="stars">
+		<div id="animation_container">
+			<canvas id="canvas"></canvas>
+			<div id="dom_overlay_container"></div>
+		</div>
+
+		<img src="images/stars.png" alt="stars">
+		<img src="images/begin.png" alt="begin">
+		<img src="images/stars.png" alt="stars">
+
+		<div id="comic_container">
+            <img src="images/part1.png" alt="comic part 1">
+            <img src="images/part1text.png" alt="comic part 1">
+            <img src="images/part2.png" alt="comic part 2">
+            <img src="images/part3.png" alt="comic part 3">
+            <img src="images/part4.png" alt="comic part 4">
+            <img src="images/part5.png" alt="comic part 5">
+            <img src="images/part6.png" alt="comic part 6">
+            <img src="images/part7.png" alt="comic part 7">
+            <img src="images/part8.png" alt="comic part 8">
+            <img src="images/part9.png" alt="comic part 9">
+            <img src="images/part10.png" alt="comic part 10">
+            <img src="images/part11.png" alt="comic part 11" class="final">
+            <img src="images/part12.png" alt="comic part 12" class="final">
+            <img src="images/part13.png" alt="comic part 13">
+        </div>
+        <footer>
+            <img src="images/stars.png" alt="stars">
+            <img src="images/end.png" alt="the end">
+            <img src="images/stars.png" alt="stars">
+            <img src="images/author.png" alt="about the author">
+        </footer>
+	</body>
 </html>
