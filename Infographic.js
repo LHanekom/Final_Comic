@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"Infographic_atlas_1", frames: [[1344,576,423,70],[1344,648,369,70],[1344,504,530,70],[1715,648,326,70],[1344,392,375,80],[1560,720,192,45],[0,773,102,45],[1754,720,188,45],[1769,576,217,45],[0,0,900,771],[104,773,97,45],[1876,504,164,45],[1504,767,145,45],[1344,767,158,45],[1344,720,214,45],[1651,767,122,45],[1775,767,109,45],[902,0,440,390],[1344,0,440,390],[902,392,440,390],[1721,392,50,50],[1944,720,70,70],[1786,0,250,250],[1786,252,250,250]]}
+		{name:"Infographic_atlas_1", frames: [[1344,576,423,70],[1344,648,369,70],[1344,504,530,70],[1715,648,326,70],[1344,392,375,80],[1560,720,192,45],[0,773,102,45],[1754,720,188,45],[1769,576,217,45],[0,0,900,771],[104,773,97,45],[1876,504,164,45],[1504,767,145,45],[1344,767,158,45],[1344,720,214,45],[1651,767,122,45],[1775,767,109,45],[902,0,440,390],[1344,0,440,390],[902,392,440,390],[1944,720,70,70],[1786,0,250,250],[1786,252,250,250]]}
 ];
 
 
@@ -173,30 +173,29 @@ p.nominalBounds = new cjs.Rectangle(0,0,1920,5000);
 
 
 
-(lib.Particle = function() {
+(lib.Plus = function() {
 	this.initialize(ss["Infographic_atlas_1"]);
 	this.gotoAndStop(20);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.Plus = function() {
+(lib.shadows = function() {
+	this.initialize(img.shadows);
+}).prototype = p = new cjs.Bitmap();
+p.nominalBounds = new cjs.Rectangle(0,0,1920,5000);
+
+
+(lib.Star_Inner = function() {
 	this.initialize(ss["Infographic_atlas_1"]);
 	this.gotoAndStop(21);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.Star_Inner = function() {
-	this.initialize(ss["Infographic_atlas_1"]);
-	this.gotoAndStop(22);
-}).prototype = p = new cjs.Sprite();
-
-
-
 (lib.Star_Outer = function() {
 	this.initialize(ss["Infographic_atlas_1"]);
-	this.gotoAndStop(23);
+	this.gotoAndStop(22);
 }).prototype = p = new cjs.Sprite();
 
 
@@ -340,27 +339,6 @@ if (reversed == null) { reversed = false; }
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(-1,-1,252,252);
-
-
-(lib.Particle_ = function(mode,startPosition,loop,reversed) {
-if (loop == null) { loop = true; }
-if (reversed == null) { reversed = false; }
-	var props = new Object();
-	props.mode = mode;
-	props.startPosition = startPosition;
-	props.labels = {};
-	props.loop = loop;
-	props.reversed = reversed;
-	cjs.MovieClip.apply(this,[props]);
-
-	// Layer_1
-	this.instance = new lib.Particle();
-
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
-
-	this._renderFirstFrame();
-
-}).prototype = getMCSymbolPrototype(lib.Particle_, new cjs.Rectangle(0,0,50,50), null);
 
 
 (lib.Lights = function(mode,startPosition,loop,reversed) {
@@ -1522,29 +1500,6 @@ if (reversed == null) { reversed = false; }
 p.nominalBounds = new cjs.Rectangle(-176.9,-174.9,353.6,353.5);
 
 
-(lib.Particle_1 = function(mode,startPosition,loop,reversed) {
-if (loop == null) { loop = true; }
-if (reversed == null) { reversed = false; }
-	var props = new Object();
-	props.mode = mode;
-	props.startPosition = startPosition;
-	props.labels = {};
-	props.loop = loop;
-	props.reversed = reversed;
-	cjs.MovieClip.apply(this,[props]);
-
-	// Layer_1
-	this.instance = new lib.Particle_();
-	this.instance.setTransform(0,0,1,1,0,0,0,25,25);
-
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1).to({alpha:0.9333},0).wait(1).to({alpha:0.8667},0).wait(1).to({alpha:0.8},0).wait(1).to({alpha:0.7333},0).wait(1).to({alpha:0.6667},0).wait(1).to({alpha:0.6},0).wait(1).to({alpha:0.5333},0).wait(1).to({alpha:0.4667},0).wait(1).to({alpha:0.4},0).wait(1).to({alpha:0.435},0).wait(1).to({alpha:0.47},0).wait(1).to({alpha:0.505},0).wait(1).to({alpha:0.54},0).wait(1).to({alpha:0.575},0).wait(1).to({alpha:0.61},0).wait(1).to({alpha:0.645},0).wait(1).to({alpha:0.68},0).wait(1).to({alpha:0.715},0).wait(1).to({alpha:0.75},0).wait(1).to({alpha:0.725},0).wait(1).to({alpha:0.7},0).wait(1).to({alpha:0.675},0).wait(1).to({alpha:0.65},0).wait(1).to({alpha:0.625},0).wait(1).to({alpha:0.6},0).wait(1).to({alpha:0.575},0).wait(1).to({alpha:0.55},0).wait(1).to({alpha:0.525},0).wait(1).to({alpha:0.5},0).wait(1).to({alpha:0.53},0).wait(1).to({alpha:0.56},0).wait(1).to({alpha:0.59},0).wait(1).to({alpha:0.62},0).wait(1).to({alpha:0.65},0).wait(1).to({alpha:0.68},0).wait(1).to({alpha:0.71},0).wait(1).to({alpha:0.74},0).wait(1).to({alpha:0.77},0).wait(1).to({alpha:0.8},0).wait(1).to({alpha:0.82},0).wait(1).to({alpha:0.84},0).wait(1).to({alpha:0.86},0).wait(1).to({alpha:0.88},0).wait(1).to({alpha:0.9},0).wait(1).to({alpha:0.92},0).wait(1).to({alpha:0.94},0).wait(1).to({alpha:0.96},0).wait(1).to({alpha:0.98},0).wait(1).to({alpha:1},0).wait(1));
-
-	this._renderFirstFrame();
-
-}).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-25,-25,50,50);
-
-
 (lib.Glow_1 = function(mode,startPosition,loop,reversed) {
 if (loop == null) { loop = true; }
 if (reversed == null) { reversed = false; }
@@ -2582,69 +2537,16 @@ if (reversed == null) { reversed = false; }
 
 	this.timeline.addTween(cjs.Tween.get(this.glow).wait(1));
 
-	// Particles
-	this.p13 = new lib.Particle_1();
-	this.p13.name = "p13";
-	this.p13.setTransform(76.7,4764.2,0.732,0.732);
+	// Shadows
+	this.instance_3 = new lib.shadows();
+	this.instance_3.setTransform(-0.25,3);
 
-	this.p14 = new lib.Particle_1();
-	this.p14.name = "p14";
-	this.p14.setTransform(1057.8,4878.25,0.688,0.688);
-
-	this.p12 = new lib.Particle_1();
-	this.p12.name = "p12";
-	this.p12.setTransform(1798.8,4109.9,0.764,0.764);
-
-	this.p11 = new lib.Particle_1();
-	this.p11.name = "p11";
-	this.p11.setTransform(221.75,4197.95,0.81,0.81);
-
-	this.p10 = new lib.Particle_1();
-	this.p10.name = "p10";
-	this.p10.setTransform(1118.55,3586.55,0.778,0.778);
-
-	this.p9 = new lib.Particle_1();
-	this.p9.name = "p9";
-	this.p9.setTransform(165,3475,0.72,0.72);
-
-	this.p8 = new lib.Particle_1();
-	this.p8.name = "p8";
-	this.p8.setTransform(1680.4,3036.9,0.684,0.684);
-
-	this.p5 = new lib.Particle_1();
-	this.p5.name = "p5";
-	this.p5.setTransform(1788.7,2095.4);
-
-	this.p7 = new lib.Particle_1();
-	this.p7.name = "p7";
-	this.p7.setTransform(887.8,2447.7,0.928,0.928);
-
-	this.p6 = new lib.Particle_1();
-	this.p6.name = "p6";
-	this.p6.setTransform(142.8,2211.85,0.648,0.648,0,0,0,0.1,0.1);
-
-	this.p4 = new lib.Particle_1();
-	this.p4.name = "p4";
-	this.p4.setTransform(1026.5,1641.9);
-
-	this.p3 = new lib.Particle_1();
-	this.p3.name = "p3";
-	this.p3.setTransform(1708.75,1402.05,0.65,0.65,0,0,0,0,0.1);
-
-	this.p1 = new lib.Particle_1();
-	this.p1.name = "p1";
-	this.p1.setTransform(1645,267.25,0.92,0.92);
-
-	this.p2 = new lib.Particle_1();
-	this.p2.name = "p2";
-	this.p2.setTransform(177,474,0.8,0.8);
-
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.p2},{t:this.p1},{t:this.p3},{t:this.p4},{t:this.p6},{t:this.p7},{t:this.p5},{t:this.p8},{t:this.p9},{t:this.p10},{t:this.p11},{t:this.p12},{t:this.p14},{t:this.p13}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(1));
 
 	this._renderFirstFrame();
 
 }).prototype = p = new lib.AnMovieClip();
-p.nominalBounds = new cjs.Rectangle(960.2,2499.9,961,2503.1);
+p.nominalBounds = new cjs.Rectangle(959.8,2499.9,961.4000000000001,2503.1);
 // library properties:
 lib.properties = {
 	id: 'B92E27B477D77544AE8C619020814858',
@@ -2652,11 +2554,12 @@ lib.properties = {
 	height: 5000,
 	fps: 24,
 	color: "#000000",
-	opacity: 1.00,
+	opacity: 0.00,
 	manifest: [
-		{src:"images/Glow.png", id:"Glow"},
-		{src:"images/Static.png", id:"Static"},
-		{src:"images/Infographic_atlas_1.png", id:"Infographic_atlas_1"}
+		{src:"images/Glow.png?1747161072177", id:"Glow"},
+		{src:"images/shadows.png?1747161072177", id:"shadows"},
+		{src:"images/Static.png?1747161072177", id:"Static"},
+		{src:"images/Infographic_atlas_1.png?1747161072120", id:"Infographic_atlas_1"}
 	],
 	preloads: []
 };

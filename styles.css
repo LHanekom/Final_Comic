@@ -1,6 +1,56 @@
-body {
-    margin: 0px ;
-    background-color: black;
+html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #000000;
+      background-color: #000000;
+      background-image: url('images/stars.png');
+      background-attachment: fixed;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('images/load_background.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 9999;
+  transition: opacity 1s ease-out;
+}
+
+
+.loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+#load_icon {
+  width: 300px;
+  height: 300px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.main_content {
+  opacity: 0;
+  animation: fadeIn 3s ease-in forwards;
+}
+
+.main_content.visible {
+  opacity: 1;
 }
 
 div {
@@ -9,42 +59,26 @@ div {
 
 #launch_page {
   height: 100vh !important;
+  background-color: black;
 }
 
 img, video, #animation_container {
-    margin: 0 auto;
+    margin: 0 auto !important;
     width: 100vw;
     display: block;
 }
 
-#canvas {
-    margin: 0 auto;
-    width: 100vw;
-    display: block;
-    height: 260.42vh;
+.stars {
+  height: 600px;
 }
 
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  color: #000000;
-  background-color: #000000;
+#introduction_container, #animation_container, #begin_container, #comic_container, #end_container, #author_container {
   opacity: 0;
-  animation: fadeIn 2s ease-in forwards; 
+  transform: translateY(50px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-.fade-out {
-  animation: fadeOut 2s ease-out forwards; 
+#introduction_container.visible, #animation_container.visible, #begin_container.visible, #comic_container.visible, #end_container.visible, #author_container.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

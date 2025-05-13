@@ -1,63 +1,59 @@
-function setupScrollNavigation(nextPage, prevPage) {
-  let isNavigating = false;
+window.addEventListener('scroll', function() {
+  const windowHeight = window.innerHeight;
 
-  // Apply fade-in on page load (handled by CSS)
-  document.body.style.opacity = '1';
+  const introduction = document.querySelector('#introduction_container');
+  const introductionHeight = introduction.getBoundingClientRect().top;
+  
+  if (introductionHeight < windowHeight * 0.25) {
+    introduction.classList.add('visible');
+  } else {
+    introduction.classList.remove('visible');
+  }
 
-  // Scroll to bottom if URL contains #bottom
-  window.addEventListener('load', () => {
-    if (window.location.hash === '#bottom') {
-      window.scrollTo(0, document.body.scrollHeight);
-    }
-  });
+  const animation = document.querySelector('#animation_container');
+  const animationHeight = animation.getBoundingClientRect().top;
 
-  // Handle mouse wheel scrolling
-  window.addEventListener('wheel', (event) => {
-    if (isNavigating) return;
+  if (animationHeight < windowHeight * 0.65) {
+    animation.classList.add('visible');
+  } else {
+    animation.classList.remove('visible');
+  }
 
-    // Scroll down at bottom
-    if (event.deltaY > 0 && nextPage) {
-      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
-      if (isAtBottom) {
-        isNavigating = true;
-        document.body.classList.add('fade-out');
-        setTimeout(() => {
-          window.location.href = nextPage;
-        }, 1000); // Match fadeOut duration
-      }
-    }
-    // Scroll up at top
-    else if (event.deltaY < 0 && prevPage) {
-      const isAtTop = window.scrollY <= 10;
-      if (isAtTop) {
-        isNavigating = true;
-        document.body.classList.add('fade-out');
-        setTimeout(() => {
-          window.location.href = prevPage + '#bottom';
-        }, 1000); // Match fadeOut duration
-      }
-    }
-  }, { passive: true });
+  const begin = document.querySelector('#begin_container');
+  const beginHeight = begin.getBoundingClientRect().top;
 
-  // Handle touch scrolling
-  window.addEventListener('touchmove', () => {
-    if (isNavigating) return;
+  if (beginHeight < windowHeight * 0.25) {
+    begin.classList.add('visible');
+  } else {
+    begin.classList.remove('visible');
+  }
 
-    const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
-    const isAtTop = window.scrollY <= 10;
+  const comic = document.querySelector('#comic_container');
+  const comicHeight = comic.getBoundingClientRect().top;
 
-    if (isAtBottom && nextPage) {
-      isNavigating = true;
-      document.body.classList.add('fade-out');
-      setTimeout(() => {
-        window.location.href = nextPage;
-      }, 1000); // Match fadeOut duration
-    } else if (isAtTop && prevPage) {
-      isNavigating = true;
-      document.body.classList.add('fade-out');
-      setTimeout(() => {
-        window.location.href = prevPage + '#bottom';
-      }, 1000); // Match fadeOut duration
-    }
-  }, { passive: true });
-}
+  if (comicHeight < windowHeight * 0.65) {
+    comic.classList.add('visible');
+  } else {
+    comic.classList.remove('visible');
+  }
+
+  const end = document.querySelector('#end_container');
+  const endHeight = end.getBoundingClientRect().top;
+
+  if (endHeight < windowHeight * 0.25) {
+    end.classList.add('visible');
+  } else {
+    end.classList.remove('visible');
+  }
+
+  const author = document.querySelector('#author_container');
+  const authorHeight = author.getBoundingClientRect().top;
+
+  if (authorHeight < windowHeight * 0.65) {
+    author.classList.add('visible');
+  } else {
+    author.classList.remove('visible');
+  }
+
+
+});
