@@ -10,13 +10,13 @@ window.addEventListener('scroll', function() {
     introduction.classList.remove('visible');
   }
 
-  const animation = document.querySelector('#animation_container');
-  const animationHeight = animation.getBoundingClientRect().top;
+  const infographic = document.querySelector('#infographic_container');
+  const infographicHeight = infographic.getBoundingClientRect().top;
 
-  if (animationHeight < windowHeight * 0.65) {
-    animation.classList.add('visible');
+  if (infographicHeight < windowHeight * 0.65) {
+    infographic.classList.add('visible');
   } else {
-    animation.classList.remove('visible');
+    infographic.classList.remove('visible');
   }
 
   const begin = document.querySelector('#begin_container');

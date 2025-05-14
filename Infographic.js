@@ -2568,8 +2568,8 @@ lib.properties = {
 
 // bootstrap callback support:
 
-(lib.Stage = function(canvas) {
-	createjs.Stage.call(this, canvas);
+(lib.Stage = function(infographic_canvas) {
+	createjs.Stage.call(this, infographic_canvas);
 }).prototype = p = new createjs.Stage();
 
 p.setAutoPlay = function(autoPlay) {
