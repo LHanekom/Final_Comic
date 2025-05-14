@@ -2598,7 +2598,7 @@ an.bootstrapCallback=function(fnCallback) {
 
 an.compositions = an.compositions || {};
 an.compositions['B92E27B477D77544AE8C619020814858'] = {
-	getStage: function() { return exportRoot.stage; },
+	getStage: function() { return exportRoot.infographic_stage; },
 	getLibrary: function() { return lib; },
 	getSpriteSheet: function() { return ss; },
 	getImages: function() { return img; }
@@ -2645,17 +2645,17 @@ an.makeResponsive = function(isResp, respDim, isScale, scaleType, domContainers)
 			container.style.width = w * sRatio + 'px';				
 			container.style.height = h * sRatio + 'px';			
 		});
-		stage.scaleX = pRatio*sRatio;			
-		stage.scaleY = pRatio*sRatio;
+		infographic_stage.scaleX = pRatio*sRatio;			
+		infographic_stage.scaleY = pRatio*sRatio;
 		lastW = iw; lastH = ih; lastS = sRatio;            
-		stage.tickOnUpdate = false;            
-		stage.update();            
-		stage.tickOnUpdate = true;		
+		infographic_stage.tickOnUpdate = false;            
+		infographic_stage.update();            
+		infographic_stage.tickOnUpdate = true;		
 	}
 }
 an.handleSoundStreamOnTick = function(event) {
 	if(!event.paused){
-		var stageChild = stage.getChildAt(0);
+		var stageChild = infographic_stage.getChildAt(0);
 		if(!stageChild.paused || stageChild.ignorePause){
 			stageChild.syncStreamSounds();
 		}

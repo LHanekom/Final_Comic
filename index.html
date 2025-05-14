@@ -1,167 +1,126 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="authoring-tool" content="Adobe_Animate_CC">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lightbringer</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-    <script src="Infographic.js"></script>
-    <script src="author.js"></script>
-    <script src="script.js"></script>
-</head>
-<body onload="initAll();">
-    <div class="loader">
-        <img id="load_icon" src="images/load.png" alt="Loading...">
-    </div>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="authoring-tool" content="Adobe_Animate_CC">
+		<title>Lightbringer</title>
+		<link rel="stylesheet" href="styles.css">
+		<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+		
+		
+		<script src="script.js"></script>
 
-    <div class="main-content">
-        <video autoplay muted loop playsinline id="launch_page">
-            <source src="images/launch.mp4" type="video/mp4">
-            Your browser doesn't support HTML5 video.
-        </video>
-        <div class="stars"></div>
-        <div id="introduction_container">
-            <img src="images/introduction.png" alt="introduction">
-        </div>
-        <div class="stars"></div>
+		<!--infographic-->
+		<script src="Infographic.js"></script>
+		<script>
+			var infographic_canvas, infographic_stage, infographic_exportRoot, infographic_container, infographic_dom_overlay_container, infographic_fnStartAnimation;
+			function init() {
+				infographic_canvas = document.getElementById("infographic_canvas");
+				infographic_container = document.getElementById("infographic_container");
+				infographic_dom_overlay_container = document.getElementById("infographic_dom_overlay_container");
+				var comp=AdobeAn.getComposition("B92E27B477D77544AE8C619020814858");
+				var lib=comp.getLibrary();
+				var loader = new createjs.LoadQueue(false);
+				loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+				loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+				var lib=comp.getLibrary();
+				loader.loadManifest(lib.properties.manifest);
+			}
+			function handleFileLoad(evt, comp) {
+				var images=comp.getImages();	
+				if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
+			}
+			function handleComplete(evt,comp) {
+				
+				var lib=comp.getLibrary();
+				var ss=comp.getSpriteSheet();
+				var queue = evt.target;
+				var ssMetadata = lib.ssMetadata;
+				for(i=0; i<ssMetadata.length; i++) {
+					ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+				}
+				infographic_exportRoot = new lib.Infographic();
+				infographic_stage = new lib.Stage(infographic_canvas);
+				infographic_stage.enableMouseOver();	
+				
+				infographic_fnStartAnimation = function() {
+					infographic_stage.addChild(infographic_exportRoot);
+					createjs.Ticker.framerate = lib.properties.fps;
+					createjs.Ticker.addEventListener("tick", infographic_stage);
+				}	    
+				
+				AdobeAn.makeResponsive(false,'height',false,1,[infographic_canvas,infographic_container,infographic_dom_overlay_container]);	
+				AdobeAn.compositionLoaded(lib.properties.id);
+				infographic_fnStartAnimation();
 
-        <div id="infographic_container" class="w-100">
-            <canvas id="infographic_canvas"></canvas>
-            <div id="infographic_dom_overlay_container"></div>
-        </div>
+				const loader = document.querySelector('.loader');
+				const mainContent = document.querySelector('.main_content');
+				loader.classList.add('hidden');
+				loader.addEventListener('transitionend', () => {
+					loader.style.display = 'none';
+					mainContent.classList.add('visible');
+					document.body.style.overflow = 'auto';
+				});
+			}
+		</script>
 
-        <div class="stars"></div>
-        <div id="begin_container">
-            <img src="images/begin.png" alt="begin">
-        </div>
-        <div class="stars"></div>
+	</head>
+	<body onload="init();">
+		<div class="loader">
+			<img id="load_icon" src="images/load.png" alt="Loading...">
+		</div>
 
-        <div id="comic_container">
-            <img src="images/part1.png" alt="comic part 1">
-            <img src="images/part1text.png" alt="comic part 1 text">
-            <img src="images/part2.png" alt="comic part 2">
-            <img src="images/part3.png" alt="comic part 3">
-            <img src="images/part4.png" alt="comic part 4">
-            <img src="images/part5.png" alt="comic part 5">
-            <img src="images/part6.png" alt="comic part 6">
-            <img src="images/part7.png" alt="comic part 7">
-            <img src="images/part8.png" alt="comic part 8">
-            <img src="images/part9.png" alt="comic part 9">
-            <img src="images/part10.png" alt="comic part 10">
-            <img src="images/part11.png" alt="comic part 11" class="final">
-            <img src="images/part12.png" alt="comic part 12" class="final">
-            <img src="images/part13.png" alt="comic part 13">
-        </div>
-        <footer>
-            <div class="stars"></div>
-            <div id="end_container">
-                <img src="images/end.png" alt="the end">
-            </div>
-            <div class="stars"></div>
-            <div id="author_container" class="w-100">
-                <canvas id="author_canvas"></canvas>
-                <div id="author_dom_overlay_container"></div>
-            </div>
-        </footer>
-    </div>
+		<div class="main-content">
+			
+			<video autoplay muted loop playsinline id="launch_page">
+				<source src="images/launch.mp4" type="video/mp4">
+				Your browser doesn't support HTML5 video.
+			</video>
+			<div class="stars"></div>
+			<div id="introduction_container">
+				<img src="images/introduction.png" alt="introduction">
+			</div>
+			<div class="stars"></div>
 
-    <script>
-        // Infographic Animation
-        var infographic_canvas, infographic_stage, infographic_exportRoot, infographic_container, infographic_dom_overlay_container, infographic_fnStartAnimation;
-        function initInfographic() {
-            infographic_canvas = document.getElementById("infographic_canvas");
-            infographic_container = document.getElementById("infographic_container");
-            infographic_dom_overlay_container = document.getElementById("infographic_dom_overlay_container");
-            var comp = AdobeAn.getComposition("B92E27B477D77544AE8C619020814858");
-            var lib = comp.getLibrary();
-            var loader = new createjs.LoadQueue(false);
-            loader.addEventListener("fileload", function(evt) { handleFileLoad(evt, comp); });
-            loader.addEventListener("complete", function(evt) { handleCompleteInfographic(evt, comp); });
-            loader.loadManifest(lib.properties.manifest);
-        }
+			<div id="infographic_container" class="w-100">
+				<canvas id="infographic_canvas" class="w-100"></canvas>
+				<div id="infographic_dom_overlay_container" style="position: absolute; left: -24px;">
+				</div>
+			</div>
 
-        function handleFileLoad(evt, comp) {
-            var images = comp.getImages();
-            if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }
-        }
+			<div class="stars"></div>
+			<div id="begin_container">
+				<img src="images/begin.png" alt="begin">
+			</div>
+			<div class="stars"></div>
 
-        function handleCompleteInfographic(evt, comp) {
-            var lib = comp.getLibrary();
-            var ss = comp.getSpriteSheet();
-            var queue = evt.target;
-            var ssMetadata = lib.ssMetadata;
-            for (var i = 0; i < ssMetadata.length; i++) {
-                ss[ssMetadata[i].name] = new createjs.SpriteSheet({
-                    "images": [queue.getResult(ssMetadata[i].name)],
-                    "frames": ssMetadata[i].frames
-                });
-            }
-            infographic_exportRoot = new lib.Infographic();
-            infographic_stage = new lib.Stage(infographic_canvas);
-            infographic_stage.enableMouseOver();
-            infographic_fnStartAnimation = function() {
-                infographic_stage.addChild(infographic_exportRoot);
-                createjs.Ticker.framerate = lib.properties.fps;
-                createjs.Ticker.addEventListener("tick", infographic_stage);
-            };
-            AdobeAn.makeResponsive(true, 'both', false, 1, [infographic_canvas, infographic_container, infographic_dom_overlay_container]);
-            AdobeAn.compositionLoaded(lib.properties.id);
-            infographic_fnStartAnimation();
-        }
-
-        // Author Animation
-        var author_canvas, author_stage, author_exportRoot, author_container, author_dom_overlay_container, author_fnStartAnimation;
-        function initAuthor() {
-            author_canvas = document.getElementById("author_canvas");
-            author_container = document.getElementById("author_container");
-            author_dom_overlay_container = document.getElementById("author_dom_overlay_container");
-            var comp = AdobeAn.getComposition("8E91B772C861D645A49460D207899497");
-            var lib = comp.getLibrary();
-            var loader = new createjs.LoadQueue(false);
-            loader.addEventListener("fileload", function(evt) { handleFileLoad(evt, comp); });
-            loader.addEventListener("complete", function(evt) { handleCompleteAuthor(evt, comp); });
-            loader.loadManifest(lib.properties.manifest);
-        }
-
-        function handleCompleteAuthor(evt, comp) {
-            var lib = comp.getLibrary();
-            var ss = comp.getSpriteSheet();
-            var queue = evt.target;
-            var ssMetadata = lib.ssMetadata;
-            for (var i = 0; i < ssMetadata.length; i++) {
-                ss[ssMetadata[i].name] = new createjs.SpriteSheet({
-                    "images": [queue.getResult(ssMetadata[i].name)],
-                    "frames": ssMetadata[i].frames
-                });
-            }
-            author_exportRoot = new lib.author();
-            author_stage = new lib.Stage(author_canvas);
-            author_stage.enableMouseOver();
-            author_fnStartAnimation = function() {
-                author_stage.addChild(author_exportRoot);
-                createjs.Ticker.framerate = lib.properties.fps;
-                createjs.Ticker.addEventListener("tick", author_stage);
-            };
-            AdobeAn.makeResponsive(true, 'both', false, 1, [author_canvas, author_container, author_dom_overlay_container]);
-            AdobeAn.compositionLoaded(lib.properties.id);
-            author_fnStartAnimation();
-        }
-
-        // Initialize both animations and handle loader
-        function initAll() {
-            initInfographic();
-            initAuthor();
-            const loader = document.querySelector('.loader');
-            const mainContent = document.querySelector('.main-content');
-            loader.classList.add('hidden');
-            loader.addEventListener('transitionend', () => {
-                loader.style.display = 'none';
-                mainContent.classList.add('visible');
-                document.body.style.overflow = 'auto';
-            });
-        }
-    </script>
-</body>
+			<div id="comic_container">
+				<img src="images/part1.png" alt="comic part 1">
+				<img src="images/part1text.png" alt="comic part 1">
+				<img src="images/part2.png" alt="comic part 2">
+				<img src="images/part3.png" alt="comic part 3">
+				<img src="images/part4.png" alt="comic part 4">
+				<img src="images/part5.png" alt="comic part 5">
+				<img src="images/part6.png" alt="comic part 6">
+				<img src="images/part7.png" alt="comic part 7">
+				<img src="images/part8.png" alt="comic part 8">
+				<img src="images/part9.png" alt="comic part 9">
+				<img src="images/part10.png" alt="comic part 10">
+				<img src="images/part11.png" alt="comic part 11" class="final">
+				<img src="images/part12.png" alt="comic part 12" class="final">
+				<img src="images/part13.png" alt="comic part 13">
+			</div>
+			<footer>
+				<div class="stars"></div>
+				<div id="end_container">
+					<img src="images/end.png" alt="the end">
+				</div>
+				<div class="stars"></div>
+				<div id="author_container">
+					<img src="images/author.png" alt="author">
+				</div>
+				
+			</footer>
+		</div>
+	</body>
 </html>
