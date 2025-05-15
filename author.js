@@ -1641,7 +1641,7 @@ an.bootstrapCallback=function(fnCallback) {
 
 an.compositions = an.compositions || {};
 an.compositions['8E91B772C861D645A49460D207899497'] = {
-	getStage: function() { return exportRoot.author_stage; },
+	getStage: function() { return author_exportRoot.author_stage; },
 	getLibrary: function() { return lib; },
 	getSpriteSheet: function() { return ss; },
 	getImages: function() { return img; }
@@ -1684,9 +1684,9 @@ an.makeResponsive = function(isResp, respDim, isScale, scaleType, domContainers)
 		}
 		domContainers[0].width = w * pRatio * sRatio;			
 		domContainers[0].height = h * pRatio * sRatio;
-		domContainers.forEach(function(container) {				
-			container.style.width = w * sRatio + 'px';				
-			container.style.height = h * sRatio + 'px';			
+		domContainers.forEach(function(author_container) {				
+			author_container.style.width = w * sRatio + 'px';				
+			author_container.style.height = h * sRatio + 'px';			
 		});
 		author_stage.scaleX = pRatio*sRatio;			
 		author_stage.scaleY = pRatio*sRatio;
