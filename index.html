@@ -62,7 +62,15 @@
 					createjs.Ticker.addEventListener("tick", infographic_stage);
 				}	    
 				
-				AdobeAn.makeResponsive(false,'height',false,1,[infographic_canvas,infographic_container,infographic_dom_overlay_container]);	
+				// Override canvas and container dimensions to match 1920x5000
+				infographic_canvas.width = 1920;
+				infographic_canvas.height = 5000;
+				infographic_container.style.width = '1920px';
+				infographic_container.style.height = '5000px';
+				infographic_dom_overlay_container.style.width = '1920px';
+				infographic_dom_overlay_container.style.height = '5000px';
+				
+				AdobeAn.makeResponsive(false,'both',false,1,[infographic_canvas,infographic_container,infographic_dom_overlay_container]);	
 				AdobeAn.compositionLoaded(lib.properties.id);
 				infographic_fnStartAnimation();
 
@@ -122,8 +130,8 @@
 			<div class="stars"></div>
 
 			<div id="infographic_container" class="w-100">
-				<canvas id="infographic_canvas" class="w-100"></canvas>
-				<div id="infographic_dom_overlay_container" style="position: absolute; left: -24px;">
+				<canvas id="infographic_canvas" class="w-100" width="1920" height="5000"></canvas>
+				<div id="infographic_dom_overlay_container">
 				</div>
 			</div>
 
