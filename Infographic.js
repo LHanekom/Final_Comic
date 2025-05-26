@@ -100,7 +100,7 @@ lib.ssMetadata = [
 (lib.Glow = function() {
 	this.initialize(img.Glow);
 }).prototype = p = new cjs.Bitmap();
-p.nominalBounds = new cjs.Rectangle(0,0,1920,5000);
+p.nominalBounds = new cjs.Rectangle(0,0,1500,3906.25);
 
 
 (lib.L_CHA = function() {
@@ -183,7 +183,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,1920,5000);
 (lib.shadows = function() {
 	this.initialize(img.shadows);
 }).prototype = p = new cjs.Bitmap();
-p.nominalBounds = new cjs.Rectangle(0,0,1920,5000);
+p.nominalBounds = new cjs.Rectangle(0,0,1500,3906.25);
 
 
 (lib.Star_Inner = function() {
@@ -203,7 +203,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,1920,5000);
 (lib.Static = function() {
 	this.initialize(img.Static);
 }).prototype = p = new cjs.Bitmap();
-p.nominalBounds = new cjs.Rectangle(0,0,1920,5000);// helper functions:
+p.nominalBounds = new cjs.Rectangle(0,0,1500,3906.25);// helper functions:
 
 function mc_symbol_clone() {
 	var clone = this._cloneProps(new this.constructor(this.mode, this.startPosition, this.loop, this.reversed));
@@ -913,7 +913,7 @@ if (reversed == null) { reversed = false; }
 
 	this._renderFirstFrame();
 
-}).prototype = getMCSymbolPrototype(lib.Glow_, new cjs.Rectangle(0,0,1920,5000), null);
+}).prototype = getMCSymbolPrototype(lib.Glow_, new cjs.Rectangle(0,0,1500,3906.25), null);
 
 
 (lib.Eclipse_Glow_1 = function(mode,startPosition,loop,reversed) {
@@ -1520,7 +1520,7 @@ if (reversed == null) { reversed = false; }
 	this._renderFirstFrame();
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-960,-2500,1920,5000);
+p.nominalBounds = new cjs.Rectangle(-960,-2500,1500,3906.25);
 
 
 (lib.Eclipse_Glow_Animated = function(mode,startPosition,loop,reversed) {
@@ -2550,8 +2550,8 @@ p.nominalBounds = new cjs.Rectangle(959.8,2499.9,961.4000000000001,2503.1);
 // library properties:
 lib.properties = {
 	id: 'B92E27B477D77544AE8C619020814858',
-	width: 1920,
-	height: 5000,
+	width: 1500,
+	height: 3906.25,
 	fps: 24,
 	color: "#000000",
 	opacity: 0.00,
